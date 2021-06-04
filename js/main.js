@@ -1,9 +1,9 @@
-// menu show yang di hidden
+// element menu
 const navMenu = document.getElementById("main-sidebar"),
   toggleMenu = document.getElementById("nav-toggle"),
   closeMenu = document.getElementById("nav-close");
 
-// show
+// show menu
 toggleMenu.addEventListener("click", () => {
   navMenu.classList.toggle("show");
 });
@@ -23,7 +23,11 @@ onscroll = function () {
   var scrollPosition = document.documentElement.scrollTop;
 
   sections.forEach((section) => {
-    if (scrollPosition >= section.offsetTop - section.offsetHeight * 0.25 && scrollPosition < section.offsetTop + section.offsetHeight - section.offsetHeight * 0.25) {
+    if (
+      scrollPosition >= section.offsetTop - section.offsetHeight * 0.25 &&
+      scrollPosition <
+        section.offsetTop + section.offsetHeight - section.offsetHeight * 0.25
+    ) {
       var currentId = section.attributes.id.value;
       removeAllActiveClasses();
       addActiveClass(currentId);
@@ -95,4 +99,23 @@ window.addEventListener("scroll", () => {
   } else {
     hideProgress();
   }
+});
+
+//AOS Animation
+AOS.init({
+  once: true, //animasi hanya akan berjalan sekali saat di scroll
+  duration: 1500, //durasi animasi selama 1,5 detik
+});
+
+//Sidebar Click Active
+gsap.registerPlugin(TextPlugin);
+gsap.to(".home__title", {
+  duration: 1.5,
+  delay: 1.0,
+  text: "Marcos Llorente",
+});
+gsap.to(".home__profession", {
+  duration: 1.5,
+  delay: 1.0,
+  text: "Player Football | Model",
 });
